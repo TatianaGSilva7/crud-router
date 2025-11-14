@@ -7,10 +7,10 @@ import Cadastro from './pages/Cadastro/Cadastro';
 import Lista from "./pages/Lista/Lista";
 import Home from "./pages/Home/Home";
 
-import NavBar from "./components/Navbar/Navbar"
+import NavBar from "./components/Navbar/Navbar";
 
 function App(){
-  const {isAuthenticated, setAuthenticated} = useState(false);
+  const [isAuthenticated, setAuthenticated]= useState(false);
   const [contacts, setContacts] = useState([]);
 
   //funçãomde autenticação
@@ -28,28 +28,30 @@ function App(){
 
   return (
     <Router>
-      {isAuthenticated && <NavBar onLogout={handleLogout}></NavBar>}
+      {isAuthenticated && <NavBar onLogout={handleLogout}/>}
       <Routes>
 
         <Route
          path="/login" 
-         element={isAuthenticated ? <Navigate to ="/"/>:<Login onLogin={handleLogin}/>}></Route>
+         element={isAuthenticated ? <Navigate to ="/"/>:<Login onLogin={handleLogin}/>}/>
 
         <Route
          path="/" 
-         element={isAuthenticated ? <Home to ="/"/>:<Login onLogin={handleLogin} />}></Route>
+         element={isAuthenticated ? <Home />:<Navigate to="login"/>}/>
 
         <Route 
         path="/cadastro" 
-        element={isAuthenticated ? <Cadastro to ="/"/>:<Login onLogin={handleLogin}/>}></Route>
+        element={isAuthenticated ? (<Cadastro contacts={contacts} setContacts={setContacts}/>):
+        (<Navigate to="/login"/>)}/>
 
         <Route 
         path="/lista" 
-        element={isAuthenticated ?<Lista to ="/"/>:<Login onLogin={handleLogin}/>}></Route>
+        element={isAuthenticated ? (<Lista contacts={contacts} setContacts={setContacts}/>):
+        (<Navigate to="/login"/>)}/>
 
         <Route
          path="*" 
-         element={isAuthenticated ?<Login to ="/"/>:<Login onLogin={handleLogin}/>}> </Route>
+         element={<Navigate to="/login"/>}/>
         
         </Routes>
     </Router>

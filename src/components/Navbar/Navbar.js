@@ -3,7 +3,7 @@ import "./Navbar.css";
 
 function Navbar({onLogout}){
     return(
-        <nav>
+        <nav  className="navbar">
             <h2>Agenda</h2>
             <ul>
                 <li><Link to="/">Home</Link></li>

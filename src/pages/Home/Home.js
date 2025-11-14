@@ -3,8 +3,9 @@ import "./Home.css";
 
 function Home (){
     return(
-        <div>
-            <h2>Em Construção</h2>
+        <div className="home-container">
+            <h1>Bem-vindo a agenda de contatos</h1>
+            <p>Use o menu acima para navegar</p>
         </div>
     )
    
